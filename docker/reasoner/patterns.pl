@@ -30,21 +30,45 @@ pattern(["between", A, "and", B, "what", "city", "is", "the", "smallest", "in", 
 pattern(["between", _, "and", _, "what", "city", "is", "the", "smallest", "in", "accommodations"], ["One", "or", "both", of, "these", "cities", "do", "not", "exist"]).
 
 % what are the X(%) biggest cities in Portugal in population
+pattern(["what", "are", "the", X, "biggest", "cities", "in", "population"], L) :- query_biggest_population(X, L), !.
+pattern(["what", "are", "the", X, "percent", "biggest", "cities", "in", "population"], L) :- query_biggest_population_percent(X, L), !. %! Fix the "%"
 % what are the X(%) smallest cities in Portugal in population
+pattern(["what", "are", "the", X, "smallest", "cities", "in", "population"], L) :- query_smallest_population(X, L), !.
+pattern(["what", "are", "the", X, "percent", "smallest", "cities", "in", "population"], L) :- query_smallest_population_percent(X, L), !. %! Fix the "%"
 % what are the X(%) biggest cities in Portugal in area
+pattern(["what", "are", "the", X, "biggest", "cities", "in", "area"], L) :- query_biggest_area(X, L), !.
+pattern(["what", "are", "the", X, "percent", "biggest", "cities", "in", "area"], L) :- query_biggest_area_percent(X, L), !. %! Fix the "%"
 % what are the X(%) smallest cities in Portugal in area
+pattern(["what", "are", "the", X, "smallest", "cities", "in", "area"], L) :- query_smallest_area(X, L), !.
+pattern(["what", "are", "the", X, "percent", "smallest", "cities", "in", "area"], L) :- query_smallest_area_percent(X, L), !. %! Fix the "%"
 % what are the X(%) biggest cities in Portugal in length
+pattern(["what", "are", "the", X, "biggest", "cities", "in", "length"], L) :- query_biggest_length(X, L), !.
+pattern(["what", "are", "the", X, "percent", "biggest", "cities", "in", "length"], L) :- query_biggest_length_percent(X, L), !. %! Fix the "%"
 % what are the X(%) smallest cities in Portugal in length
-% what are the X(%) cities with the most accommodations in Portugal
-% what are the X(%) cities with the least accommodations in Portugal
+pattern(["what", "are", "the", X, "smallest", "cities", "in", "length"], L) :- query_smallest_length(X, L), !.
+pattern(["what", "are", "the", X, "percent", "smallest", "cities", "in", "length"], L) :- query_smallest_length_percent(X, L), !. %! Fix the "%"
+% what are the X(%) biggest cities in Portugal in accommodations
+pattern(["what", "are", "the", X, "biggest", "cities", "in", "accommodations"], L) :- query_biggest_accommodations(X, L), !.
+pattern(["what", "are", "the", X, "percent", "biggest", "cities", "in", "accommodations"], L) :- query_biggest_accommodations_percent(X, L), !. %! Fix the "%"
+% what are the X(%) smallest cities in Portugal in accommodations
+pattern(["what", "are", "the", X, "smallest", "cities", "in", "accommodations"], L) :- query_smallest_accommodations(X, L), !.
+pattern(["what", "are", "the", X, "percent", "smallest", "cities", "in", "accommodations"], L) :- query_smallest_accommodations_percent(X, L), !. %! Fix the "%"
 
 % in the table XPTO execute the query XYZ
 
 % create a new table X with {query}
 
 % biggest city in Portugal
+pattern(["what", "is", "the", "biggest", "city", "in", "Portugal"], ["The", "biggest", "city", "in", "Portugal", "is", R]) :- query_biggest_area(1, R), !.      %! Fix this, R is a list, not an atom
 % smallest city in Portugal
-% most southern city in Portugal
+pattern(["what", "is", "the", "smallest", "city", "in", "Portugal"], ["The", "smallest", "city", "in", "Portugal", "is", R]) :- query_smallest_area(1, R), !.   %! Fix this, R is a list, not an atom
 % most northern city in Portugal
+pattern(["what", "is", "the", "most", "northern", "city", "in", "Portugal"], ["The", "most", "northern", "city", "in", "Portugal", "is", R]) :- query_biggest_latitude(1, R), !.    %! Fix this, R is a list, not an atom
+% most southern city in Portugal
+pattern(["what", "is", "the", "most", "southern", "city", "in", "Portugal"], ["The", "most", "southern", "city", "in", "Portugal", "is", R]) :- query_smallest_latitude(1, R), !.   %! Fix this, R is a list, not an atom
 % most eastern city in Portugal
+pattern(["what", "is", "the", "most", "eastern", "city", "in", "Portugal"], ["The", "most", "eastern", "city", "in", "Portugal", "is", R]) :- query_biggest_longitude(1, R), !.     %! Fix this, R is a list, not an atom
 % most western city in Portugal
+pattern(["what", "is", "the", "most", "western", "city", "in", "Portugal"], ["The", "most", "western", "city", "in", "Portugal", "is", R]) :- query_smallest_longitude(1, R), !.    %! Fix this, R is a list, not an atom
+% hieghest city in Portugal
+pattern(["what", "is", "the", "hieghest", "city", "in", "Portugal"], ["The", "hieghest", "city", "in", "Portugal", "is", R]) :- query_biggest_altitude(1, R), !.      %! Fix this, R is a list, not an atom
