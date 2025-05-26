@@ -25,6 +25,16 @@ loop(true) :-
     write('Result: '), write(R), nl,
     loop(true).
 
+get_answer(Input, R) :-
+    remove_trailing_question(Input, CleanedInput),
+    string_to_array(CleanedInput, List),
+    (Input \= "Bye", Input \= "bye" ->
+        process_input(List, R1),
+        array_to_string(R1, R)
+    ;
+        R = "Goodbye!"
+    ).
+
 loop(false) :-
     write('Goodbye!'), nl, !.
 
@@ -32,5 +42,3 @@ process_input(L, R) :-
     pattern(L, R), !.
 
 process_input(_, ['Invalid', 'input!']).
-
-:- loop(true).

@@ -1,7 +1,7 @@
-import tkinter
+from tkinter import *
 import customtkinter
-
-
+import requests
+import random
 
 class App(customtkinter.CTk):
     def __init__(self):
@@ -111,20 +111,16 @@ class App(customtkinter.CTk):
 # -- Button actions
 
     def left_button_1_action(self):
-        #randomQuery1()
-        print("Left Button 1 clicked")
+        self.left_button_1.configure(text = self.randomQuery())
 
     def left_button_2_action(self):
-        #randomQuery2()
-        print("Left Button 2 clicked")
+        self.left_button_2.configure(text = self.randomQuery())
 
     def right_button_3_action(self):
-        #randomQuery3()
-        print("Right Button 3 clicked")
+        self.right_button_3.configure(text = self.randomQuery())
 
     def right_button_4_action(self):
-        #randomQuery4()
-        print("Right Button 4 clicked")
+        self.right_button_4.configure(text = self.randomQuery())
 
 # -- submit logic
     def submit_text(self):
@@ -133,15 +129,50 @@ class App(customtkinter.CTk):
         self.read_only_box.configure(state="normal")  # Temporarily enable editing
 
         if input_text == "":
-            self.read_only_box.insert("end", f"\nuser: {input_text}", "user")
-            self.read_only_box.insert("end", f"\nAI: Please enter a valid question", "ai")
+            # self.read_only_box.insert("end", f"\nuser: {input_text}", "user")
+            # self.read_only_box.insert("end", f"\nAI: Please enter a valid question", "ai")
+            pass
         else:
-            answer = "This is a simulated response from the AI."
+            answer = self.ask_prolog(input_text) #TODO: present lists of results in table
             self.read_only_box.insert("end", f"\nuser: {input_text}", "user")
             self.read_only_box.insert("end", f"\nAI: {answer}", "ai")
             self.writable_box.delete(0, "end")
 
         self.read_only_box.configure(state="disabled")  # Re-disable textbox
+
+    # -- Accessory functions
+    
+    def ask_prolog(self, query) -> str:
+        try:
+            response = requests.post(
+                'http://localhost:8000/prolog',
+                json={'input': query}
+            )
+            if response.ok:
+                return response.json().get('result', 'No result')
+            else:
+                return f"Error: {response.status_code}"
+        except requests.exceptions.RequestException as e:
+            return f"Request failed: {e}"
+        
+    def randomQuery(self) -> str:
+        question = random.randint(1, 7)
+        match question:
+            case 1:
+                query = "what is the biggest city in Portugal?"
+            case 2:
+                query = "what is the smallest city in Portugal?"
+            case 3:
+                query = "what is the most northern city in Portugal?"
+            case 4:
+                query = "what is the most southern city in Portugal?"
+            case 5:
+                query = "what is the most eastern city in Portugal?"
+            case 6:
+                query = "what is the most western city in Portugal?"
+            case 7:
+                query = "what is the highest city in Portugal?"
+        return self.ask_prolog(query)
 
 
 

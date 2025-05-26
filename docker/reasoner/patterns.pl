@@ -70,5 +70,5 @@ pattern(["what", "is", "the", "most", "southern", "city", "in", "Portugal"], ["T
 pattern(["what", "is", "the", "most", "eastern", "city", "in", "Portugal"], ["The", "most", "eastern", "city", "in", "Portugal", "is", R]) :- query_biggest_longitude(1, R), !.     %! Fix this, R is a list, not an atom
 % most western city in Portugal
 pattern(["what", "is", "the", "most", "western", "city", "in", "Portugal"], ["The", "most", "western", "city", "in", "Portugal", "is", R]) :- query_smallest_longitude(1, R), !.    %! Fix this, R is a list, not an atom
-% hieghest city in Portugal
-pattern(["what", "is", "the", "hieghest", "city", "in", "Portugal"], ["The", "hieghest", "city", "in", "Portugal", "is", R]) :- query_biggest_altitude(1, R), !.      %! Fix this, R is a list, not an atom
+% highest city in Portugal
+pattern(["what", "is", "the", "highest", "city", "in", "Portugal"], ["The", "hieghest", "city", "in", "Portugal", "is", R]) :- query_biggest_altitude(1, R), !.      %! Fix this, R is a list, not an atom
