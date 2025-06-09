@@ -37,7 +37,7 @@ class App(customtkinter.CTk):
         self.left_button_1 = customtkinter.CTkButton(
             self.left_button_frame, 
             text="Left Button 1",  # dar display no return da funcao
-            font=("Arial", 20),
+            font=("Courier", 20),
             width=button_size, 
             height=button_size, 
             command=self.left_button_1_action
@@ -47,7 +47,7 @@ class App(customtkinter.CTk):
         self.left_button_2 = customtkinter.CTkButton(
             self.left_button_frame, 
             text="Left Button 2", # dar display no return da funcao
-            font=("Arial", 20),
+            font=("Courier", 20),
             width=button_size, 
             height=button_size, 
             command=self.left_button_2_action
@@ -64,7 +64,7 @@ class App(customtkinter.CTk):
         self.right_button_3 = customtkinter.CTkButton(
             self.right_button_frame, 
             text="Right Button 1", # dar display no return da funcao
-            font=("Arial", 20),
+            font=("Courier", 20),
             width=button_size, 
             height=button_size, 
             command=self.right_button_3_action
@@ -74,7 +74,7 @@ class App(customtkinter.CTk):
         self.right_button_4 = customtkinter.CTkButton(
             self.right_button_frame, 
             text="Right Button 2", # dar display no return da funcao
-            font=("Arial", 20),
+            font=("Courier", 20),
             width=button_size, 
             height=button_size, 
             command=self.right_button_4_action
@@ -85,16 +85,17 @@ class App(customtkinter.CTk):
         # --- CENTER PANEL ---
 
         # Read-only text box
-        self.read_only_box = customtkinter.CTkTextbox(self, font=("Arial", 20))
+        self.read_only_box = customtkinter.CTkTextbox(self, font=("Courier", 20))
         self.read_only_box.grid(row=0, column=1, padx=20, pady=(20, 10), sticky="nsew")
-        self.read_only_box.insert("0.0", "This is a read-only text box.\nYou cannot edit this text.")
+        self.read_only_box.insert("0.0", "Send \'help\' to see available commands.", "system")
         self.read_only_box.tag_config("user", foreground="#8888ff")
         self.read_only_box.tag_config("ai", foreground="#66cc66")
+        self.read_only_box.tag_config("system", foreground="#ff6666")
         self.read_only_box.configure(state="disabled")
 
         # Writable input box
         self.writable_box = customtkinter.CTkEntry(
-            self, placeholder_text="What would you like to ask?", font=("Arial", 20),
+            self, placeholder_text="What would you like to ask?", font=("Courier", 20),
             height = 40
         )
         self.writable_box.grid(row=2, column=1, padx=20, pady=(10, 5), sticky="nsew")
@@ -103,7 +104,7 @@ class App(customtkinter.CTk):
 
         # Submit button
         self.submit_button = customtkinter.CTkButton(
-            self, text="Submit", command=self.submit_text, width=100, height=30, font=("Arial", 20)
+            self, text="Submit", command=self.submit_text, width=100, height=30, font=("Courier", 20)
         )
         self.submit_button.grid(row=3, column=1, padx=20, pady=(5, 20), sticky="e")
 
@@ -129,11 +130,16 @@ class App(customtkinter.CTk):
         self.read_only_box.configure(state="normal")  # Temporarily enable editing
 
         if input_text == "":
-            # self.read_only_box.insert("end", f"\nuser: {input_text}", "user")
-            # self.read_only_box.insert("end", f"\nAI: Please enter a valid question", "ai")
             pass
+        elif input_text == "help":
+            
+            self.read_only_box.insert("end", f"\nuser: {input_text}", "user")
+            self.read_only_box.insert("end", f"\nSystem: {self.system_help_message()}", "system")
+            self.writable_box.delete(0, "end")
         else:
-            answer = self.ask_prolog(input_text) #TODO: present lists of results in table
+            answer = self.ask_prolog(input_text)
+            if answer.split(" ")[0] == "table":
+                answer = self.format_table(answer.replace(" ", "_").replace(")_(", "@").replace(")", "").replace("_", " ").split("@")[1:])
             self.read_only_box.insert("end", f"\nuser: {input_text}", "user")
             self.read_only_box.insert("end", f"\nAI: {answer}", "ai")
             self.writable_box.delete(0, "end")
@@ -141,6 +147,25 @@ class App(customtkinter.CTk):
         self.read_only_box.configure(state="disabled")  # Re-disable textbox
 
     # -- Accessory functions
+    
+    def format_table(self, data_list):
+        """
+        Receives a list of names (strings or tuples) and returns a string formatted as an ASCII table.
+        Example input: ["Porto", "Lisbon", "Braga"] or [("Porto",), ("Lisbon",), ("Braga",)]
+        """
+        # Normalize input: flatten if list of tuples
+        names = [item[0] if isinstance(item, (tuple, list)) else item for item in data_list]
+        if not names:
+            return "(No data)"
+        # Determine column width
+        max_len = max(len(str(name)) for name in names)
+        col_width = max(max_len, 4)
+        # Build table
+        header = f"| {'City':<{col_width}} |"
+        sep = f"+-{'-'*col_width}-+"
+        rows = [f"| {str(name):<{col_width}} |" for name in names]
+        table = '\n'.join([sep, header, sep] + rows + [sep])
+        return '\n' +table
     
     def ask_prolog(self, query) -> str:
         try:
@@ -174,6 +199,8 @@ class App(customtkinter.CTk):
                 query = "what is the highest city in Portugal?"
         return self.ask_prolog(query)
 
+    def system_help_message(self): #TODO: Insert all available commands
+        return "I am a chatbot that answers questions about the cities in Portugal. Type 'help' to see this message again."
 
 
 if __name__ == "__main__":

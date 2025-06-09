@@ -30,45 +30,54 @@ pattern(["between", A, "and", B, "what", "city", "is", "the", "smallest", "in", 
 pattern(["between", _, "and", _, "what", "city", "is", "the", "smallest", "in", "accommodations"], ["One", "or", "both", of, "these", "cities", "do", "not", "exist"]).
 
 % what are the X(%) biggest cities in Portugal in population
-pattern(["what", "are", "the", X, "biggest", "cities", "in", "population"], L) :- query_biggest_population(X, L), !.
-pattern(["what", "are", "the", X, "percent", "biggest", "cities", "in", "population"], L) :- query_biggest_population_percent(X, L), !. %! Fix the "%"
+pattern(["what", "are", "the", X, "biggest", "cities", "in", "population"], L) :- query_biggest_population(X, P), L = ["table"|P], !.
+pattern(["what", "are", "the", X, "percent", "biggest", "cities", "in", "population"], L) :- query_biggest_population_percent(X, P), L = ["table"|P], !.
 % what are the X(%) smallest cities in Portugal in population
-pattern(["what", "are", "the", X, "smallest", "cities", "in", "population"], L) :- query_smallest_population(X, L), !.
-pattern(["what", "are", "the", X, "percent", "smallest", "cities", "in", "population"], L) :- query_smallest_population_percent(X, L), !. %! Fix the "%"
+pattern(["what", "are", "the", X, "smallest", "cities", "in", "population"], L) :- query_smallest_population(X, P), L = ["table"|P], !.
+pattern(["what", "are", "the", X, "percent", "smallest", "cities", "in", "population"], L) :- query_smallest_population_percent(X, P), L = ["table"|P], !.
 % what are the X(%) biggest cities in Portugal in area
-pattern(["what", "are", "the", X, "biggest", "cities", "in", "area"], L) :- query_biggest_area(X, L), !.
-pattern(["what", "are", "the", X, "percent", "biggest", "cities", "in", "area"], L) :- query_biggest_area_percent(X, L), !. %! Fix the "%"
+pattern(["what", "are", "the", X, "biggest", "cities", "in", "area"], L) :- query_biggest_area(X, P), L = ["table"|P], !.
+pattern(["what", "are", "the", X, "percent", "biggest", "cities", "in", "area"], L) :- query_biggest_area_percent(X, P), L = ["table"|P], !.
 % what are the X(%) smallest cities in Portugal in area
-pattern(["what", "are", "the", X, "smallest", "cities", "in", "area"], L) :- query_smallest_area(X, L), !.
-pattern(["what", "are", "the", X, "percent", "smallest", "cities", "in", "area"], L) :- query_smallest_area_percent(X, L), !. %! Fix the "%"
+pattern(["what", "are", "the", X, "smallest", "cities", "in", "area"], L) :- query_smallest_area(X, P), L = ["table"|P], !.
+pattern(["what", "are", "the", X, "percent", "smallest", "cities", "in", "area"], L) :- query_smallest_area_percent(X, P), L = ["table"|P], !.
 % what are the X(%) biggest cities in Portugal in length
-pattern(["what", "are", "the", X, "biggest", "cities", "in", "length"], L) :- query_biggest_length(X, L), !.
-pattern(["what", "are", "the", X, "percent", "biggest", "cities", "in", "length"], L) :- query_biggest_length_percent(X, L), !. %! Fix the "%"
+pattern(["what", "are", "the", X, "biggest", "cities", "in", "length"], L) :- query_biggest_length(X, P), L = ["table"|P], !.
+pattern(["what", "are", "the", X, "percent", "biggest", "cities", "in", "length"], L) :- query_biggest_length_percent(X, P), L = ["table"|P], !.
 % what are the X(%) smallest cities in Portugal in length
-pattern(["what", "are", "the", X, "smallest", "cities", "in", "length"], L) :- query_smallest_length(X, L), !.
-pattern(["what", "are", "the", X, "percent", "smallest", "cities", "in", "length"], L) :- query_smallest_length_percent(X, L), !. %! Fix the "%"
+pattern(["what", "are", "the", X, "smallest", "cities", "in", "length"], L) :- query_smallest_length(X, P), L = ["table"|P], !.
+pattern(["what", "are", "the", X, "percent", "smallest", "cities", "in", "length"], L) :- query_smallest_length_percent(X, P), L = ["table"|P], !.
 % what are the X(%) biggest cities in Portugal in accommodations
-pattern(["what", "are", "the", X, "biggest", "cities", "in", "accommodations"], L) :- query_biggest_accommodations(X, L), !.
-pattern(["what", "are", "the", X, "percent", "biggest", "cities", "in", "accommodations"], L) :- query_biggest_accommodations_percent(X, L), !. %! Fix the "%"
+pattern(["what", "are", "the", X, "biggest", "cities", "in", "accommodations"], L) :- query_biggest_accommodations(X, P), L = ["table"|P], !.
+pattern(["what", "are", "the", X, "percent", "biggest", "cities", "in", "accommodations"], L) :- query_biggest_accommodations_percent(X, P), L = ["table"|P], !.
 % what are the X(%) smallest cities in Portugal in accommodations
-pattern(["what", "are", "the", X, "smallest", "cities", "in", "accommodations"], L) :- query_smallest_accommodations(X, L), !.
-pattern(["what", "are", "the", X, "percent", "smallest", "cities", "in", "accommodations"], L) :- query_smallest_accommodations_percent(X, L), !. %! Fix the "%"
-
-% in the table XPTO execute the query XYZ
-
-% create a new table X with {query}
+pattern(["what", "are", "the", X, "smallest", "cities", "in", "accommodations"], L) :- query_smallest_accommodations(X, P), L = ["table"|P], !.
+pattern(["what", "are", "the", X, "percent", "smallest", "cities", "in", "accommodations"], L) :- query_smallest_accommodations_percent(X, P), L = ["table"|P], !.
 
 % biggest city in Portugal
-pattern(["what", "is", "the", "biggest", "city", "in", "Portugal"], ["The", "biggest", "city", "in", "Portugal", "is", R]) :- query_biggest_area(1, R), !.      %! Fix this, R is a list, not an atom
+pattern(["what", "is", "the", "biggest", "city", "in", "Portugal"], ["The", "biggest", "city", "in", "Portugal", "is", R]) :- query_biggest_area(1, P), unparenthesize_list(P, UP), UP = [R|_], !.
 % smallest city in Portugal
-pattern(["what", "is", "the", "smallest", "city", "in", "Portugal"], ["The", "smallest", "city", "in", "Portugal", "is", R]) :- query_smallest_area(1, R), !.   %! Fix this, R is a list, not an atom
+pattern(["what", "is", "the", "smallest", "city", "in", "Portugal"], ["The", "smallest", "city", "in", "Portugal", "is", R]) :- query_smallest_area(1, P), unparenthesize_list(P, UP), UP = [R|_], !.
 % most northern city in Portugal
-pattern(["what", "is", "the", "most", "northern", "city", "in", "Portugal"], ["The", "most", "northern", "city", "in", "Portugal", "is", R]) :- query_biggest_latitude(1, R), !.    %! Fix this, R is a list, not an atom
+pattern(["what", "is", "the", "most", "northern", "city", "in", "Portugal"], ["The", "most", "northern", "city", "in", "Portugal", "is", R]) :- query_biggest_latitude(1, R), !.
 % most southern city in Portugal
-pattern(["what", "is", "the", "most", "southern", "city", "in", "Portugal"], ["The", "most", "southern", "city", "in", "Portugal", "is", R]) :- query_smallest_latitude(1, R), !.   %! Fix this, R is a list, not an atom
+pattern(["what", "is", "the", "most", "southern", "city", "in", "Portugal"], ["The", "most", "southern", "city", "in", "Portugal", "is", R]) :- query_smallest_latitude(1, R), !.
 % most eastern city in Portugal
-pattern(["what", "is", "the", "most", "eastern", "city", "in", "Portugal"], ["The", "most", "eastern", "city", "in", "Portugal", "is", R]) :- query_biggest_longitude(1, R), !.     %! Fix this, R is a list, not an atom
+pattern(["what", "is", "the", "most", "eastern", "city", "in", "Portugal"], ["The", "most", "eastern", "city", "in", "Portugal", "is", R]) :- query_biggest_longitude(1, R), !.
 % most western city in Portugal
-pattern(["what", "is", "the", "most", "western", "city", "in", "Portugal"], ["The", "most", "western", "city", "in", "Portugal", "is", R]) :- query_smallest_longitude(1, R), !.    %! Fix this, R is a list, not an atom
+pattern(["what", "is", "the", "most", "western", "city", "in", "Portugal"], ["The", "most", "western", "city", "in", "Portugal", "is", R]) :- query_smallest_longitude(1, R), !.
 % highest city in Portugal
-pattern(["what", "is", "the", "highest", "city", "in", "Portugal"], ["The", "hieghest", "city", "in", "Portugal", "is", R]) :- query_biggest_altitude(1, R), !.      %! Fix this, R is a list, not an atom
+pattern(["what", "is", "the", "highest", "city", "in", "Portugal"], ["The", "highest", "city", "in", "Portugal", "is", R]) :- query_biggest_altitude(1, R), !.
+
+
+% ----------- accessory rules -----------
+unparenthesize_list([], []).
+unparenthesize_list([H|T], [U|UT]) :-
+    atom_chars(H, Chars),
+    remove_parens(Chars, InnerChars),
+    atom_chars(U, InnerChars),
+    unparenthesize_list(T, UT).
+
+remove_parens(['('|Rest], Inner) :-
+    append(Inner, [')'], Rest), !.
+remove_parens(Chars, Chars).
