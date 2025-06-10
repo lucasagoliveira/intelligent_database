@@ -36,7 +36,7 @@ class App(customtkinter.CTk):
 
         self.left_button_1 = customtkinter.CTkButton(
             self.left_button_frame, 
-            text="Left Button 1",  # dar display no return da funcao
+            text="Click me",  # dar display no return da funcao
             font=("Courier", 20),
             width=button_size, 
             height=button_size, 
@@ -46,7 +46,7 @@ class App(customtkinter.CTk):
 
         self.left_button_2 = customtkinter.CTkButton(
             self.left_button_frame, 
-            text="Left Button 2", # dar display no return da funcao
+            text="Click me", # dar display no return da funcao
             font=("Courier", 20),
             width=button_size, 
             height=button_size, 
@@ -63,7 +63,7 @@ class App(customtkinter.CTk):
 
         self.right_button_3 = customtkinter.CTkButton(
             self.right_button_frame, 
-            text="Right Button 1", # dar display no return da funcao
+            text="Click me", # dar display no return da funcao
             font=("Courier", 20),
             width=button_size, 
             height=button_size, 
@@ -73,7 +73,7 @@ class App(customtkinter.CTk):
 
         self.right_button_4 = customtkinter.CTkButton(
             self.right_button_frame, 
-            text="Right Button 2", # dar display no return da funcao
+            text="Click me", # dar display no return da funcao
             font=("Courier", 20),
             width=button_size, 
             height=button_size, 
@@ -87,10 +87,10 @@ class App(customtkinter.CTk):
         # Read-only text box
         self.read_only_box = customtkinter.CTkTextbox(self, font=("Courier", 20))
         self.read_only_box.grid(row=0, column=1, padx=20, pady=(20, 10), sticky="nsew")
-        self.read_only_box.insert("0.0", "Send \'help\' to see available commands.", "system")
+        self.read_only_box.insert("0.0", "System: Send \'help\' to see available commands.", "system")
         self.read_only_box.tag_config("user", foreground="#8888ff")
         self.read_only_box.tag_config("ai", foreground="#66cc66")
-        self.read_only_box.tag_config("system", foreground="#ff6666")
+        self.read_only_box.tag_config("system", foreground="#fffa66")
         self.read_only_box.configure(state="disabled")
 
         # Writable input box
@@ -112,16 +112,16 @@ class App(customtkinter.CTk):
 # -- Button actions
 
     def left_button_1_action(self):
-        self.left_button_1.configure(text = self.randomQuery())
+        self.left_button_1.configure(text = self.wrap_text(self.randomQuery(), 20))
 
     def left_button_2_action(self):
-        self.left_button_2.configure(text = self.randomQuery())
+        self.left_button_2.configure(text = self.wrap_text(self.randomQuery(), 20))
 
     def right_button_3_action(self):
-        self.right_button_3.configure(text = self.randomQuery())
+        self.right_button_3.configure(text = self.wrap_text(self.randomQuery(), 20))
 
     def right_button_4_action(self):
-        self.right_button_4.configure(text = self.randomQuery())
+        self.right_button_4.configure(text = self.wrap_text(self.randomQuery(), 20))
 
 # -- submit logic
     def submit_text(self):
@@ -167,6 +167,22 @@ class App(customtkinter.CTk):
         table = '\n'.join([sep, header, sep] + rows + [sep])
         return '\n' +table
     
+    def wrap_text(self, text, max_chars_per_line):
+        words = text.split()
+        lines = []
+        current_line = ""
+        for word in words:
+            if len(current_line) + len(word) + 1 > max_chars_per_line:
+                lines.append(current_line)
+                current_line = word
+            else:
+                if current_line:
+                    current_line += " "
+                current_line += word
+        if current_line:
+            lines.append(current_line)
+        return "\n".join(lines)
+    
     def ask_prolog(self, query) -> str:
         try:
             response = requests.post(
@@ -200,9 +216,54 @@ class App(customtkinter.CTk):
         return self.ask_prolog(query)
 
     def system_help_message(self): #TODO: Insert all available commands
-        return "I am a chatbot that answers questions about the cities in Portugal. Type 'help' to see this message again."
-
-
+        text = "Available commands:\n\n"
+        text += "1.Simple questions:\n"
+        text += "- how many people live in [city]?\n"
+        text += "- how many accommodations are there in [city]?\n"
+        text += "- what is the area of [city]?\n"
+        text += "- what is the length of [city]?\n"
+        text += "\n"
+        text += "2.Comparative questions:\n"
+        text += "- between [cityA] and [cityB] what city is the biggest in population?\n"
+        text += "- between [cityA] and [cityB] what city is the smallest in population?\n"
+        text += "- between [cityA] and [cityB] what city is the biggest in area?\n"
+        text += "- between [cityA] and [cityB] what city is the smallest in area?\n"
+        text += "- between [cityA] and [cityB] what city is the biggest in length?\n"
+        text += "- between [cityA] and [cityB] what city is the smallest in length?\n"
+        text += "- between [cityA] and [cityB] what city is the biggest in accommodations?\n"
+        text += "- between [cityA] and [cityB] what city is the smallest in accommodations?\n"
+        text += "\n"
+        text += "3.Superlative questions (absolute):\n"
+        text += "- what are the [Number] biggest cities in population?\n"
+        text += "- what are the [Number] smallest cities in population?\n"
+        text += "- what are the [Number] biggest cities in area?\n"
+        text += "- what are the [Number] smallest cities in area?\n"
+        text += "- what are the [Number] biggest cities in length?\n"
+        text += "- what are the [Number] smallest cities in length?\n"
+        text += "- what are the [Number] biggest cities in accommodation?\n"
+        text += "- what are the [Number] smallest cities in accommodation?\n"
+        text += "- what is the biggest city in Portugal?\n"
+        text += "- what is the smallest city in Portugal?\n"
+        text += "- what is the most northern city in Portugal?\n"
+        text += "- what is the most southern city in Portugal?\n"
+        text += "- what is the most eastern city in Portugal?\n"
+        text += "- what is the most western city in Portugal?\n"
+        text += "- what is the highest city in Portugal?\n"
+        text += "\n"
+        text += "4.Superlative questions (percentage):\n"
+        text += "- what are the [Number] percent biggest cities in population?\n"
+        text += "- what are the [Number] percent smallest cities in population?\n"
+        text += "- what are the [Number] percent biggest cities in area?\n"
+        text += "- what are the [Number] percent smallest cities in area?\n"
+        text += "- what are the [Number] percent biggest cities in length?\n"
+        text += "- what are the [Number] percent smallest cities in length?\n"
+        text += "- what are the [Number] percent biggest cities in accommodation?\n"
+        text += "- what are the [Number] percent smallest cities in accommodation?\n"
+        text += "\n"
+        text += "Attention: all the commands are case sensitive, but all the city names start with upper letters!"
+        return text
+        
+        
 if __name__ == "__main__":
     app = App()
     app.mainloop()
