@@ -139,7 +139,7 @@ class App(customtkinter.CTk):
         else:
             answer = self.ask_prolog(input_text)
             if answer.split(" ")[0] == "table":
-                answer = self.format_table(answer.replace(" ", "_").replace(")_(", "@").replace(")", "").replace("_", " ").split("@")[1:])
+                answer = self.format_table(answer.replace(") (", "@").replace(")", "").split("@")[1:])
             self.read_only_box.insert("end", f"\nuser: {input_text}", "user")
             self.read_only_box.insert("end", f"\nAI: {answer}", "ai")
             self.writable_box.delete(0, "end")
