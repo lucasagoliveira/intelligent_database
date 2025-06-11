@@ -1,6 +1,6 @@
 import matplotlib.pyplot as plt
 
-# Example data
+# DO NOT CHANGE THESE VALUES
 sql_times = [
     608, 207, 206, 203, 203, 200, 202, 207, 205, 210, 218, 219,
     208, 213, 216, 204, 214, 218, 211, 219, 217, 210, 212, 208,
