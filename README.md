@@ -6,7 +6,7 @@
 - Windows: https://www.docker.com/products/docker-desktop/
 - Linux: ```curl -fsSL https://get.docker.com | sh```
 2. Initialize Docker.
-3. extract LUGARES21_PORTUGAL.zip into the "docker" folder and rename the extracted "LUGARES21_PORTUGAL.gpkg" to "LUGARES21_PORTUGAL.sqlite"
+3. Extract LUGARES21_PORTUGAL.zip into the "docker" folder and rename the extracted "LUGARES21_PORTUGAL.gpkg" to "LUGARES21_PORTUGAL.sqlite"
 4. Build docker and run it. Using the script:
 - `run.sh` on Linux
 - `run.bat` on Windows
@@ -22,4 +22,10 @@ python3 app.py
 
 2. To use the app you can ask questions on the writable text box and press the "Enter" key or click on the "Submit" button. The app will respond with the answer to your question.
 
-3. You can also click the side buttons to see another random question and answer.
+3. You can also click the side buttons to see another random fact about Portugal.
+
+### How to compare time of execution
+1. Open a terminal and run the following command:
+```sh
+python3 graph.py
+```
