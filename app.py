@@ -151,14 +151,14 @@ class App(customtkinter.CTk):
 
         elif input_text == "help":
             
-            self.read_only_box.insert("end", f"\nuser: {input_text}", "user")
+            self.read_only_box.insert("end", f"\n\nuser: {input_text}", "user")
             self.read_only_box.insert("end", f"\nSystem: {self.system_help_message()}", "system")
             self.writable_box.delete(0, "end")
         else:
             answer = self.ask_prolog(input_text)
             if answer.split(" ")[0] == "table":
                 answer = self.format_table(answer.replace(") (", "@").replace(")", "").split("@")[1:])
-            self.read_only_box.insert("end", f"\nuser: {input_text}", "user")
+            self.read_only_box.insert("end", f"\n\nuser: {input_text}", "user")
             self.read_only_box.insert("end", f"\nAI: {answer}", "ai")
             self.writable_box.delete(0, "end")
 
@@ -205,7 +205,7 @@ class App(customtkinter.CTk):
     def ask_prolog(self, query) -> str:
         try:
             response = requests.post(
-                'http://localhost:8000/prolog',
+                'http://localhost:8080/prolog',
                 json={'input': query}
             )
             if response.ok:
