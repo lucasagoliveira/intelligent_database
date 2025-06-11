@@ -6,6 +6,8 @@ import random
 class App(customtkinter.CTk):
     def __init__(self):
         super().__init__()
+        
+
 
         # configure window
         self.title("Intelligent Database Assistant")
@@ -102,11 +104,26 @@ class App(customtkinter.CTk):
         self.writable_box.bind("<Return>", lambda event: self.submit_text())
 
 
+        #clear button
+        self.clear_button = customtkinter.CTkButton(
+            self, text="Clear", command=self.clear_action, width=100, height=30, font=("Courier", 20)
+        )
+        self.clear_button.grid(row=3, column=1, padx=20, pady=(5, 20), sticky="w")
+
         # Submit button
         self.submit_button = customtkinter.CTkButton(
             self, text="Submit", command=self.submit_text, width=100, height=30, font=("Courier", 20)
         )
         self.submit_button.grid(row=3, column=1, padx=20, pady=(5, 20), sticky="e")
+
+
+#clear button action
+    def clear_action(self):
+        self.read_only_box.configure(state="normal")
+        self.read_only_box.delete("1.0", "end")
+        self.read_only_box.insert("0.0", "System: Send 'help' to see available commands.", "system")
+        self.read_only_box.configure(state="disabled")
+
 
 
 # -- Button actions
@@ -131,6 +148,7 @@ class App(customtkinter.CTk):
 
         if input_text == "":
             pass
+
         elif input_text == "help":
             
             self.read_only_box.insert("end", f"\nuser: {input_text}", "user")
@@ -144,6 +162,7 @@ class App(customtkinter.CTk):
             self.read_only_box.insert("end", f"\nAI: {answer}", "ai")
             self.writable_box.delete(0, "end")
 
+        self.read_only_box.see("end")  # Scroll to the end
         self.read_only_box.configure(state="disabled")  # Re-disable textbox
 
     # -- Accessory functions
@@ -197,7 +216,7 @@ class App(customtkinter.CTk):
             return f"Request failed: {e}"
         
     def randomQuery(self) -> str:
-        question = random.randint(1, 7)
+        question = random.randint(1, 15)
         match question:
             case 1:
                 query = "what is the biggest city in Portugal?"
@@ -213,6 +232,23 @@ class App(customtkinter.CTk):
                 query = "what is the most western city in Portugal?"
             case 7:
                 query = "what is the highest city in Portugal?"
+            case 8:
+                query = "how many people live in Porto?"
+            case 9:
+                query = "how many accommodations are there in Porto?"
+            case 10:
+                query = "what is the area of Porto?"
+            case 11:
+                query = "what is the length of Porto?"
+            case 12:
+                query = "how many people live in Lisboa?"
+            case 13:
+                query = "how many accommodations are there in Lisboa?"
+            case 14:
+                query = "what is the area of Lisboa?"
+            case 15:
+                query = "what is the length of Lisboa?"
+            
         return self.ask_prolog(query)
 
     def system_help_message(self): #TODO: Insert all available commands

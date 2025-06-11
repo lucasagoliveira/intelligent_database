@@ -1,0 +1,103 @@
+this file contains the time values in miliseconds of the computation of the query in prolog
+    -> use only comparative querys on this statistic
+
+using the following inputs these wer the results
+
+
+mean = 370.27 ms
+
+median = 402.50 ms
+
+
+->  inputs used
+
+between Porto and Lisboa what city is the biggest in population?
+480.09 ms
+
+between Porto and Lisboa what city is the biggest in population?
+779.85 ms
+
+between Matosinhos and Lisboa what city is the biggest in population?
+404.66 ms
+
+between Lisboa and Matosinhos what city is the biggest in population?
+268.44 ms
+
+between Braga and Coimbra what city is the biggest in population?
+269.15 ms
+
+between Faro and Évora what city is the biggest in population?
+954.49 ms
+
+between Aveiro and Beja what city is the biggest in population?
+277.02 ms
+
+between Guimarães and Leiria what city is the biggest in population?
+418.62 ms
+
+between Viseu and Portalegre what city is the biggest in population?
+273.08 ms
+
+between Setúbal and Funchal what city is the biggest in population?
+409.24 ms
+
+between Santarém and Tavira what city is the biggest in population?
+406.55 ms
+
+between Loulé and Barcelos what city is the biggest in population?
+422.45 ms
+
+between Almada and Mafra what city is the biggest in population?
+271.64 ms
+
+between Oeiras and Montijo what city is the biggest in population?
+410.63 ms
+
+between Amadora and Seixal what city is the biggest in population?
+271.02 ms
+
+between Sintra and Gaia what city is the biggest in population?
+415.24 ms
+
+between Loures and Lagos what city is the biggest in population?
+405.62 ms
+
+between Penafiel and Valongo what city is the biggest in population?
+406.27 ms
+
+between Paredes and Gaia what city is the biggest in population?
+278.15 ms
+
+between Odivelas and Olhão what city is the biggest in population?
+279.74 ms
+
+between Ílhavo and Moita what city is the biggest in population?
+410.73 ms
+
+between Covilhã and Abrantes what city is the biggest in population?
+400.49 ms
+
+between Espinho and Lamego what city is the biggest in population?
+277.77 ms
+
+between Tomar and Albufeira what city is the biggest in population?
+417.97 ms
+
+
+between Chaves and Fafe what city is the biggest in population?
+267.30 ms
+
+between Silves and Estarreja what city is the biggest in population?
+271.64 ms
+
+between Mirandela and Montemor what city is the biggest in population?
+277.85 ms
+
+between Ourém and Sines what city is the biggest in population?
+417.74 ms
+
+between Tondela and Fundão what city is the biggest in population?
+404.51 ms
+
+between Sines and Fundão what city is the biggest in population?
+275.14 ms
