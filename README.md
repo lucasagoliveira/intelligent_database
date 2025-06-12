@@ -24,6 +24,9 @@ python3 app.py
 
 3. You can also click the side buttons to see another random fact about Portugal.
 
+4. To get the full list of available commands, type 'help' in the text box and press "Enter" or click the "Submit" button.
+4.1 You must type exatcly the command as it is shown in the list, otherwise the app will not recognize it.
+
 ### How to compare time of execution
 1. Open a terminal and run the following command:
 ```sh

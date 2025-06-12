@@ -129,16 +129,16 @@ class App(customtkinter.CTk):
 # -- Button actions
 
     def left_button_1_action(self):
-        self.left_button_1.configure(text = self.wrap_text(self.randomQuery(), 20))
+        self.left_button_1.configure(text = self.wrap_text(self.randomQuery(1,7), 20))
 
     def left_button_2_action(self):
-        self.left_button_2.configure(text = self.wrap_text(self.randomQuery(), 20))
+        self.left_button_2.configure(text = self.wrap_text(self.randomQuery(8,19), 20))
 
     def right_button_3_action(self):
-        self.right_button_3.configure(text = self.wrap_text(self.randomQuery(), 20))
+        self.right_button_3.configure(text = self.wrap_text(self.randomQuery(20,31), 20))
 
     def right_button_4_action(self):
-        self.right_button_4.configure(text = self.wrap_text(self.randomQuery(), 20))
+        self.right_button_4.configure(text = self.wrap_text(self.randomQuery(32,39), 20))
 
 # -- submit logic
     def submit_text(self):
@@ -215,8 +215,8 @@ class App(customtkinter.CTk):
         except requests.exceptions.RequestException as e:
             return f"Request failed: {e}"
         
-    def randomQuery(self) -> str:
-        question = random.randint(1, 15)
+    def randomQuery(self, inicio, fim) -> str:
+        question = random.randint(inicio, fim)
         match question:
             case 1:
                 query = "what is the biggest city in Portugal?"
@@ -248,6 +248,54 @@ class App(customtkinter.CTk):
                 query = "what is the area of Lisboa?"
             case 15:
                 query = "what is the length of Lisboa?"
+            case 16:
+                query = "how many people live in Braga?"
+            case 17:
+                query = "how many accommodations are there in Braga?"
+            case 18:
+                query = "what is the area of Braga?"
+            case 19:
+                query = "what is the length of Braga?"
+            case 20:
+                query = "how many people live in Coimbra?"
+            case 21:
+                query = "how many accommodations are there in Coimbra?"
+            case 22:
+                query = "what is the area of Coimbra?"
+            case 23:
+                query = "what is the length of Coimbra?"
+            case 24:
+                query = "how many people live in Aveiro?"
+            case 25:
+                query = "how many accommodations are there in Aveiro?"
+            case 26:
+                query = "what is the area of Aveiro?"
+            case 27:
+                query = "what is the length of Aveiro?"
+            case 28:
+                query = "how many people live in Faro?"
+            case 29:
+                query = "how many accommodations are there in Faro?"
+            case 30:
+                query = "what is the area of Faro?"
+            case 31:
+                query = "what is the length of Faro?"
+            case 32:
+                query = "how many people live in Funchal?"
+            case 33:
+                query = "how many accommodations are there in Funchal?"
+            case 34:
+                query = "what is the area of Funchal?"
+            case 35:
+                query = "what is the length of Funchal?"
+            case 36:
+                query = "how many people live in Guarda?"
+            case 37:
+                query = "how many accommodations are there in Guarda?"
+            case 38:
+                query = "what is the area of Guarda?"
+            case 39:
+                query = "what is the length of Guarda?"
             
         return self.ask_prolog(query)
 
