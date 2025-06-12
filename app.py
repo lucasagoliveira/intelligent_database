@@ -106,7 +106,7 @@ class App(customtkinter.CTk):
 
         #clear button
         self.clear_button = customtkinter.CTkButton(
-            self, text="Clear", command=self.clear_action, width=100, height=30, font=("Courier", 20)
+            self, text="Clear", command=self.clear_action, width=100, height=30, font=("Courier", 20), fg_color="#e43939", hover_color="#a30f0f"
         )
         self.clear_button.grid(row=3, column=1, padx=20, pady=(5, 20), sticky="w")
 
@@ -205,7 +205,7 @@ class App(customtkinter.CTk):
     def ask_prolog(self, query) -> str:
         try:
             response = requests.post(
-                'http://localhost:8080/prolog',
+                'http://localhost:8000/prolog',
                 json={'input': query}
             )
             if response.ok:
