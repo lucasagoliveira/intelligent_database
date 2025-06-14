@@ -151,14 +151,14 @@ class App(customtkinter.CTk):
 
         elif input_text == "help":
             
-            self.read_only_box.insert("end", f"\n\nuser: {input_text}", "user")
+            self.read_only_box.insert("end", f"\n\nUser: {input_text}", "user")
             self.read_only_box.insert("end", f"\nSystem: {self.system_help_message()}", "system")
             self.writable_box.delete(0, "end")
         else:
             answer = self.ask_prolog(input_text)
             if answer.split(" ")[0] == "table":
-                answer = self.format_table(answer.replace(") (", "@").replace(")", "").split("@")[1:])
-            self.read_only_box.insert("end", f"\n\nuser: {input_text}", "user")
+                answer = self.format_table(answer.replace(") (", "@").replace(")", "").replace("(", "@").split("@")[1:])
+            self.read_only_box.insert("end", f"\n\nUser: {input_text}", "user")
             self.read_only_box.insert("end", f"\nAI: {answer}", "ai")
             self.writable_box.delete(0, "end")
 
@@ -324,8 +324,8 @@ class App(customtkinter.CTk):
         text += "- what are the [Number] smallest cities in area?\n"
         text += "- what are the [Number] biggest cities in length?\n"
         text += "- what are the [Number] smallest cities in length?\n"
-        text += "- what are the [Number] biggest cities in accommodation?\n"
-        text += "- what are the [Number] smallest cities in accommodation?\n"
+        text += "- what are the [Number] biggest cities in accommodations?\n"
+        text += "- what are the [Number] smallest cities in accommodations?\n"
         text += "- what is the biggest city in Portugal?\n"
         text += "- what is the smallest city in Portugal?\n"
         text += "- what is the most northern city in Portugal?\n"

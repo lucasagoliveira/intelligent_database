@@ -1,4 +1,4 @@
-# inteligent_database
+# intelligent_database
 
 ### How to run the server
 
