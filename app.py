@@ -205,7 +205,7 @@ class App(customtkinter.CTk):
     def ask_prolog(self, query) -> str:
         try:
             response = requests.post(
-                'http://localhost:8000/prolog',
+                'http://localhost:8080/prolog',
                 json={'input': query}
             )
             if response.ok:
@@ -341,8 +341,8 @@ class App(customtkinter.CTk):
         text += "- what are the [Number] percent smallest cities in area?\n"
         text += "- what are the [Number] percent biggest cities in length?\n"
         text += "- what are the [Number] percent smallest cities in length?\n"
-        text += "- what are the [Number] percent biggest cities in accommodation?\n"
-        text += "- what are the [Number] percent smallest cities in accommodation?\n"
+        text += "- what are the [Number] percent biggest cities in accommodations?\n"
+        text += "- what are the [Number] percent smallest cities in accommodations?\n"
         text += "\n"
         text += "Attention: all the commands are case sensitive, but all the city names start with upper letters!"
         return text

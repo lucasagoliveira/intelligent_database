@@ -1,0 +1,35 @@
+computation times in miliseconds of the superlative querys in prolog 
+
+tempo medio = 302.17 ms
+
+
+what are the 1 percent biggest cities in population?
+1452.51 ms
+
+
+what are the 1 percent smallest cities in population?
+148.50 ms
+
+
+what are the 1 percent biggest cities in area?
+153.45 ms
+
+
+what are the 1 percent smallest cities in area?
+154.24 ms
+
+
+what are the 1 percent biggest cities in length?
+153.08 ms
+
+
+what are the 1 percent smallest cities in length?
+156.61 ms
+
+
+what are the 1 percent biggest cities in accommodations?
+150.02 ms
+
+
+what are the 1 percent smallest cities in accommodations?
+148.92 ms

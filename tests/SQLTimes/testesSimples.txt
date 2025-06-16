@@ -1,0 +1,20 @@
+computation times of the simple querys in SQL
+
+tempo medio = 
+
+
+how many people live in Porto?
+78.83 ms
+
+
+how many accommodations are there in Porto?
+77.10 ms
+
+
+what is the area of Porto?
+71.59 ms
+
+
+
+what is the length of Porto?
+71.72 ms

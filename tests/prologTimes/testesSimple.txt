@@ -1,0 +1,17 @@
+computation times of the simple querys in prolog
+
+tempo medio = 126.36 ms
+
+
+how many people live in Porto?
+118.53 ms
+
+how many accommodations are there in Porto?
+135.25 ms
+
+what is the area of Porto?
+133.21 ms
+
+
+what is the length of Porto?
+118.44 ms

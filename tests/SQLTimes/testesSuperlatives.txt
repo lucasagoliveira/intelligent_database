@@ -1,0 +1,69 @@
+tempos de computacao com as querys superlativas em SQL 
+
+tempo medio =  231.40 ms
+
+
+what are the 1 percent biggest cities in population?
+686.70 ms
+
+
+what are the 1 percent smallest cities in population?
+241.48 ms
+
+
+what are the 1 percent biggest cities in area?
+224.68 ms
+
+tempos de computacao com as querys superlativas em SQL 
+
+tempo medio =  231.40 ms
+
+
+what are the 1 percent biggest cities in population?
+686.70 ms
+
+
+what are the 1 percent smallest cities in population?
+241.48 ms
+
+
+what are the 1 percent biggest cities in area?
+224.68 ms
+
+
+what are the 1 percent smallest cities in area?
+252.63 ms
+
+
+what are the 1 percent biggest cities in length?
+222.43 ms
+
+
+what are the 1 percent smallest cities in length?
+221.90 ms
+
+
+what are the 1 percent biggest cities in accommodations?
+0.97 ms
+
+
+what are the 1 percent smallest cities in accommodations?
+0.39 ms
+what are the 1 percent smallest cities in area?
+252.63 ms
+
+
+what are the 1 percent biggest cities in length?
+222.43 ms
+
+
+what are the 1 percent smallest cities in length?
+221.90 ms
+
+
+what are the 1 percent biggest cities in accommodations?
+0.97 ms
+
+
+what are the 1 percent smallest cities in accommodations?
+0.39 ms
